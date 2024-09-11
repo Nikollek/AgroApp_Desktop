@@ -6,5 +6,11 @@ namespace AgroApp_Desktop
         {
             InitializeComponent();
         }
+
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            panelMenu.BackColor = ColorPalette.VerdeClaro; // Cor de fundo do Panel
+        }
     }
 }

@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "AgroApp_Desktop/1.0.0": {
+        "runtime": {
+          "AgroApp_Desktop.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "AgroApp_Desktop/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

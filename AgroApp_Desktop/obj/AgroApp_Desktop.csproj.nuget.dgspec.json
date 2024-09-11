@@ -1,29 +1,29 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nikol\\OneDrive\\Documentos\\projetos\\unip\\AgroApp_Desktop\\AgroApp_Desktop\\AgroApp_Desktop.csproj": {}
+    "C:\\Users\\ADRIANA\\OneDrive\\Área de Trabalho\\Trabalho Faculdade\\AgroApp_Desktop\\AgroApp_Desktop\\AgroApp_Desktop.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nikol\\OneDrive\\Documentos\\projetos\\unip\\AgroApp_Desktop\\AgroApp_Desktop\\AgroApp_Desktop.csproj": {
+    "C:\\Users\\ADRIANA\\OneDrive\\Área de Trabalho\\Trabalho Faculdade\\AgroApp_Desktop\\AgroApp_Desktop\\AgroApp_Desktop.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nikol\\OneDrive\\Documentos\\projetos\\unip\\AgroApp_Desktop\\AgroApp_Desktop\\AgroApp_Desktop.csproj",
+        "projectUniqueName": "C:\\Users\\ADRIANA\\OneDrive\\Área de Trabalho\\Trabalho Faculdade\\AgroApp_Desktop\\AgroApp_Desktop\\AgroApp_Desktop.csproj",
         "projectName": "AgroApp_Desktop",
-        "projectPath": "C:\\Users\\nikol\\OneDrive\\Documentos\\projetos\\unip\\AgroApp_Desktop\\AgroApp_Desktop\\AgroApp_Desktop.csproj",
-        "packagesPath": "C:\\Users\\nikol\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nikol\\OneDrive\\Documentos\\projetos\\unip\\AgroApp_Desktop\\AgroApp_Desktop\\obj\\",
+        "projectPath": "C:\\Users\\ADRIANA\\OneDrive\\Área de Trabalho\\Trabalho Faculdade\\AgroApp_Desktop\\AgroApp_Desktop\\AgroApp_Desktop.csproj",
+        "packagesPath": "C:\\Users\\ADRIANA\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ADRIANA\\OneDrive\\Área de Trabalho\\Trabalho Faculdade\\AgroApp_Desktop\\AgroApp_Desktop\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\nikol\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ADRIANA\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0-windows"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://packagesource": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0-windows7.0": {
@@ -64,7 +64,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
