@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "tVT5+vZUxvY=",
+  "dgSpecHash": "Nsve71js0g4=",
   "success": true,
   "projectFilePath": "C:\\Users\\ADRIANA\\OneDrive\\Área de Trabalho\\Trabalho Faculdade\\AgroApp_Desktop\\AgroApp_Desktop\\AgroApp_Desktop.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\ADRIANA\\.nuget\\packages\\winforms.datavisualization\\1.9.2\\winforms.datavisualization.1.9.2.nupkg.sha512"
+  ],
   "logs": []
 }

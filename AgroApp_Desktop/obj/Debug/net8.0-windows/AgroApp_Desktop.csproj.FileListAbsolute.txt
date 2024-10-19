@@ -3,7 +3,7 @@ C:\Users\ADRIANA\OneDrive\Área de Trabalho\Trabalho Faculdade\AgroApp_Desktop\A
 C:\Users\ADRIANA\OneDrive\Área de Trabalho\Trabalho Faculdade\AgroApp_Desktop\AgroApp_Desktop\bin\Debug\net8.0-windows\AgroApp_Desktop.runtimeconfig.json
 C:\Users\ADRIANA\OneDrive\Área de Trabalho\Trabalho Faculdade\AgroApp_Desktop\AgroApp_Desktop\bin\Debug\net8.0-windows\AgroApp_Desktop.dll
 C:\Users\ADRIANA\OneDrive\Área de Trabalho\Trabalho Faculdade\AgroApp_Desktop\AgroApp_Desktop\bin\Debug\net8.0-windows\AgroApp_Desktop.pdb
-C:\Users\ADRIANA\OneDrive\Área de Trabalho\Trabalho Faculdade\AgroApp_Desktop\AgroApp_Desktop\obj\Debug\net8.0-windows\AgroApp_Desktop.Form1.resources
+C:\Users\ADRIANA\OneDrive\Área de Trabalho\Trabalho Faculdade\AgroApp_Desktop\AgroApp_Desktop\obj\Debug\net8.0-windows\AgroApp_Desktop.Properties.Resources.resources
 C:\Users\ADRIANA\OneDrive\Área de Trabalho\Trabalho Faculdade\AgroApp_Desktop\AgroApp_Desktop\obj\Debug\net8.0-windows\AgroApp_Desktop.csproj.GenerateResource.cache
 C:\Users\ADRIANA\OneDrive\Área de Trabalho\Trabalho Faculdade\AgroApp_Desktop\AgroApp_Desktop\obj\Debug\net8.0-windows\AgroApp_Desktop.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\ADRIANA\OneDrive\Área de Trabalho\Trabalho Faculdade\AgroApp_Desktop\AgroApp_Desktop\obj\Debug\net8.0-windows\AgroApp_Desktop.AssemblyInfoInputs.cache
@@ -15,3 +15,9 @@ C:\Users\ADRIANA\OneDrive\Área de Trabalho\Trabalho Faculdade\AgroApp_Desktop\A
 C:\Users\ADRIANA\OneDrive\Área de Trabalho\Trabalho Faculdade\AgroApp_Desktop\AgroApp_Desktop\obj\Debug\net8.0-windows\AgroApp_Desktop.pdb
 C:\Users\ADRIANA\OneDrive\Área de Trabalho\Trabalho Faculdade\AgroApp_Desktop\AgroApp_Desktop\obj\Debug\net8.0-windows\AgroApp_Desktop.genruntimeconfig.cache
 C:\Users\ADRIANA\OneDrive\Área de Trabalho\Trabalho Faculdade\AgroApp_Desktop\AgroApp_Desktop\obj\Debug\net8.0-windows\ref\AgroApp_Desktop.dll
+C:\Users\ADRIANA\OneDrive\Área de Trabalho\Trabalho Faculdade\AgroApp_Desktop\AgroApp_Desktop\obj\Debug\net8.0-windows\AgroApp_Desktop.LoginForm.resources
+C:\Users\ADRIANA\OneDrive\Área de Trabalho\Trabalho Faculdade\AgroApp_Desktop\AgroApp_Desktop\bin\Debug\net8.0-windows\WinForms.DataVisualization.Utilities.dll
+C:\Users\ADRIANA\OneDrive\Área de Trabalho\Trabalho Faculdade\AgroApp_Desktop\AgroApp_Desktop\bin\Debug\net8.0-windows\WinForms.DataVisualization.dll
+C:\Users\ADRIANA\OneDrive\Área de Trabalho\Trabalho Faculdade\AgroApp_Desktop\AgroApp_Desktop\obj\Debug\net8.0-windows\AgroApp_Desktop.csproj.AssemblyReference.cache
+C:\Users\ADRIANA\OneDrive\Área de Trabalho\Trabalho Faculdade\AgroApp_Desktop\AgroApp_Desktop\obj\Debug\net8.0-windows\AgroApp_.FE63337E.Up2Date
+C:\Users\ADRIANA\OneDrive\Área de Trabalho\Trabalho Faculdade\AgroApp_Desktop\AgroApp_Desktop\obj\Debug\net8.0-windows\AgroApp_Desktop.AgroApp.resources
