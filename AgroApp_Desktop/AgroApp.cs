@@ -54,12 +54,6 @@ namespace AgroApp_Desktop
             linkFornecedor.LinkColor = ColorPalette.VerdeEscuro;
             labelFornecedores.ForeColor = ColorPalette.VerdeEscuro;
             linkRelatorio.LinkColor = ColorPalette.VerdeEscuro;
-            buttonAdicionarVendas.BackColor = ColorPalette.VerdeClaro;
-            buttonEditar.BackColor = ColorPalette.VerdeClaro;
-            buttonExcluir.BackColor = ColorPalette.VerdeClaro;
-            buttonAdicionarVendas.ForeColor = ColorPalette.VerdeEscuro;
-            buttonEditar.ForeColor = ColorPalette.VerdeEscuro;
-            buttonExcluir.ForeColor = ColorPalette.VerdeEscuro;
             panelVendaIngresso.BackColor = ColorPalette.VerdeClaro;
             panelVendaAlimento.BackColor = ColorPalette.VerdeClaro;
             panelGanhoTotal.BackColor = ColorPalette.VerdeClaro;
@@ -123,19 +117,24 @@ namespace AgroApp_Desktop
             series2.IsValueShownAsLabel = true; // Exibir os dados
             series2.Font = new Font("Linik Sans", 10, FontStyle.Bold); // Para alterar a fonte dos dados
 
-            ConfigurarDataGridVendas();
+            ConfigurarDataGridVendasAsync();
             ConfigurarDataGridProdução();
             ConfigurarDataGridFornecedores();
         }
 
 
-        private void ConfigurarDataGridVendas()
+        private async Task ConfigurarDataGridVendasAsync()
         {
             dataGridVendas.AllowUserToAddRows = false;
+
+            // Limpa colunas e linhas existentes, se houver
+            dataGridVendas.Columns.Clear();
+            dataGridVendas.Rows.Clear();
 
             // Adicionando as colunas 
             dataGridVendas.Columns.Add("Coluna1", "Vendas realizadas");
             dataGridVendas.Columns.Add("Coluna2", "Quantidade");
+            dataGridVendas.Columns.Add("Coluna3", "Valor total");
 
             dataGridVendas.DefaultCellStyle.ForeColor = ColorPalette.VerdeEscuro; // Cor do texto
             dataGridVendas.ColumnHeadersDefaultCellStyle.ForeColor = ColorPalette.VerdeEscuro; // Cor do texto do cabeçalho
@@ -148,18 +147,25 @@ namespace AgroApp_Desktop
 
             dataGridVendas.Columns[0].HeaderCell.Style.BackColor = ColorPalette.VerdeClaro;// Cor para a primeira coluna
             dataGridVendas.Columns[1].HeaderCell.Style.BackColor = ColorPalette.VerdeClaro;// Cor para a segunda coluna 
+            dataGridVendas.Columns[2].HeaderCell.Style.BackColor = ColorPalette.VerdeClaro;// Cor para a terceira coluna
 
-            // Adicionando os dados 
-            dataGridVendas.Rows.Add("Tomate");
-            dataGridVendas.Rows.Add("Batata");
-            dataGridVendas.Rows.Add("Cenoura");
-            dataGridVendas.Rows.Add("Alface");
-            dataGridVendas.Rows.Add("Abóbora");
-            dataGridVendas.Rows.Add("Pimentão");
-            dataGridVendas.Rows.Add("Berinjela");
-            dataGridVendas.Rows.Add("Cebola");
+            try
+            {
+                // Chama o método para obter os dados da API
+                ConexaoBackEnd conexao = new ConexaoBackEnd();
+                List<VendasEfetivadas> vendas = await conexao.deveRetornarVendasEfetivadas();
 
-            dataGridVendas.Height = 242; //Altura do datagrid
+                // Adiciona os dados ao DataGridView
+                foreach (var venda in vendas)
+                {
+                    dataGridVendas.Rows.Add(venda.nome_alimento, venda.quantidade_vendida, venda.total_vendido);
+                }
+                dataGridVendas.Height = 242; //Altura do datagrid
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar dados: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
             dataGridVendas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
@@ -217,12 +223,14 @@ namespace AgroApp_Desktop
         }
 
 
-        private void ConfigurarDataGridFornecedores()
+        private async void ConfigurarDataGridFornecedores()
         {
             dataGridFornecedores.AllowUserToAddRows = false;
 
             // Adicionando as colunas 
-            dataGridFornecedores.Columns.Add("Coluna1", "Lista de fornecedores");
+            dataGridFornecedores.Columns.Add("Coluna1", "Fornecedores");
+            dataGridFornecedores.Columns.Add("Coluna2", "Tipo pessoa");
+            dataGridFornecedores.Columns.Add("Coluna3", "Telefone");
 
             dataGridFornecedores.DefaultCellStyle.ForeColor = ColorPalette.VerdeEscuro; // Cor do texto
             dataGridFornecedores.ColumnHeadersDefaultCellStyle.ForeColor = ColorPalette.VerdeEscuro; // Cor do texto do cabeçalho
@@ -234,19 +242,26 @@ namespace AgroApp_Desktop
             }
 
             dataGridFornecedores.Columns[0].HeaderCell.Style.BackColor = ColorPalette.VerdeClaro;  // Cor para a primeira coluna
+            dataGridFornecedores.Columns[1].HeaderCell.Style.BackColor = ColorPalette.VerdeClaro;  // Cor para a primeira coluna
+            dataGridFornecedores.Columns[2].HeaderCell.Style.BackColor = ColorPalette.VerdeClaro;  // Cor para a primeira coluna
 
-            // Adicionando os dados
-            dataGridFornecedores.Rows.Add("Fornecedor1");
-            dataGridFornecedores.Rows.Add("Fornecedor2");
-            dataGridFornecedores.Rows.Add("Fornecedor3");
-            dataGridFornecedores.Rows.Add("Fornecedor4");
-            dataGridFornecedores.Rows.Add("Fornecedor5");
-            dataGridFornecedores.Rows.Add("Fornecedor6");
-            dataGridFornecedores.Rows.Add("Fornecedor7");
-            dataGridFornecedores.Rows.Add("Fornecedor8");
+            try
+            {
+                // Chama o método para obter os dados da API
+                ConexaoBackEnd conexao = new ConexaoBackEnd();
+                List<Fornecedores> fornecedores = await conexao.deveRetornarFornecedores();
 
-
-            dataGridFornecedores.Height = 242; // Altura do datagrid
+                // Adiciona os dados ao DataGridView
+                foreach (var forncedor in fornecedores)
+                {
+                    dataGridFornecedores.Rows.Add(forncedor.nome_fornecedor, forncedor.tipo_pessoa, forncedor.telefone);
+                }
+                dataGridVendas.Height = 242; //Altura do datagrid
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar dados: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
             dataGridFornecedores.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 

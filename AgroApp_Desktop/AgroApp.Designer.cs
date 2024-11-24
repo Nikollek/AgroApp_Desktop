@@ -79,9 +79,6 @@
             labelProdução = new Label();
             dataGridProdução = new DataGridView();
             panelAreaVendas = new Panel();
-            buttonExcluir = new Button();
-            buttonEditar = new Button();
-            buttonAdicionarVendas = new Button();
             labelVendas = new Label();
             dataGridVendas = new DataGridView();
             pictureLogoInicio = new PictureBox();
@@ -630,9 +627,6 @@
             // 
             // panelAreaVendas
             // 
-            panelAreaVendas.Controls.Add(buttonExcluir);
-            panelAreaVendas.Controls.Add(buttonEditar);
-            panelAreaVendas.Controls.Add(buttonAdicionarVendas);
             panelAreaVendas.Controls.Add(labelVendas);
             panelAreaVendas.Controls.Add(dataGridVendas);
             panelAreaVendas.Font = new Font("Linik Sans ExtraBold", 11.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -642,36 +636,6 @@
             panelAreaVendas.Size = new Size(727, 453);
             panelAreaVendas.TabIndex = 2;
             panelAreaVendas.Paint += panelAreaVendas_Paint;
-            // 
-            // buttonExcluir
-            // 
-            buttonExcluir.BackColor = SystemColors.ActiveCaptionText;
-            buttonExcluir.Location = new Point(480, 114);
-            buttonExcluir.Name = "buttonExcluir";
-            buttonExcluir.Size = new Size(117, 39);
-            buttonExcluir.TabIndex = 4;
-            buttonExcluir.Text = "EXCLUIR";
-            buttonExcluir.UseVisualStyleBackColor = false;
-            // 
-            // buttonEditar
-            // 
-            buttonEditar.BackColor = SystemColors.ActiveCaptionText;
-            buttonEditar.Location = new Point(303, 114);
-            buttonEditar.Name = "buttonEditar";
-            buttonEditar.Size = new Size(117, 39);
-            buttonEditar.TabIndex = 3;
-            buttonEditar.Text = "EDITAR";
-            buttonEditar.UseVisualStyleBackColor = false;
-            // 
-            // buttonAdicionarVendas
-            // 
-            buttonAdicionarVendas.BackColor = SystemColors.ActiveCaptionText;
-            buttonAdicionarVendas.Location = new Point(126, 114);
-            buttonAdicionarVendas.Name = "buttonAdicionarVendas";
-            buttonAdicionarVendas.Size = new Size(117, 39);
-            buttonAdicionarVendas.TabIndex = 2;
-            buttonAdicionarVendas.Text = "ADICIONAR";
-            buttonAdicionarVendas.UseVisualStyleBackColor = false;
             // 
             // labelVendas
             // 
@@ -788,9 +752,6 @@
         private Panel panelProdução;
         private DataGridView dataGridProdução;
         private Label labelVendas;
-        private Button buttonExcluir;
-        private Button buttonEditar;
-        private Button buttonAdicionarVendas;
         private Label labelProdução;
         private Label labelFornecedores;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartAlimentosFornecidos;
