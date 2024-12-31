@@ -4,7 +4,7 @@
     <Compile Update="AgroApp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Login Administrador.cs">
+    <Compile Update="LoginAdministrador.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

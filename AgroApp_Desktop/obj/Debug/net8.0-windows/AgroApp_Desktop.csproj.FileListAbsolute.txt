@@ -21,3 +21,27 @@ C:\Users\ADRIANA\OneDrive\Área de Trabalho\Trabalho Faculdade\AgroApp_Desktop\A
 C:\Users\ADRIANA\OneDrive\Área de Trabalho\Trabalho Faculdade\AgroApp_Desktop\AgroApp_Desktop\obj\Debug\net8.0-windows\AgroApp_Desktop.csproj.AssemblyReference.cache
 C:\Users\ADRIANA\OneDrive\Área de Trabalho\Trabalho Faculdade\AgroApp_Desktop\AgroApp_Desktop\obj\Debug\net8.0-windows\AgroApp_.FE63337E.Up2Date
 C:\Users\ADRIANA\OneDrive\Área de Trabalho\Trabalho Faculdade\AgroApp_Desktop\AgroApp_Desktop\obj\Debug\net8.0-windows\AgroApp_Desktop.AgroApp.resources
+C:\Users\nikol\OneDrive\Documentos\projetos\unip\AgroApp_Desktop\AgroApp_Desktop\bin\Debug\net8.0-windows\AgroApp_Desktop.exe
+C:\Users\nikol\OneDrive\Documentos\projetos\unip\AgroApp_Desktop\AgroApp_Desktop\bin\Debug\net8.0-windows\AgroApp_Desktop.deps.json
+C:\Users\nikol\OneDrive\Documentos\projetos\unip\AgroApp_Desktop\AgroApp_Desktop\bin\Debug\net8.0-windows\AgroApp_Desktop.runtimeconfig.json
+C:\Users\nikol\OneDrive\Documentos\projetos\unip\AgroApp_Desktop\AgroApp_Desktop\bin\Debug\net8.0-windows\AgroApp_Desktop.dll
+C:\Users\nikol\OneDrive\Documentos\projetos\unip\AgroApp_Desktop\AgroApp_Desktop\bin\Debug\net8.0-windows\AgroApp_Desktop.pdb
+C:\Users\nikol\OneDrive\Documentos\projetos\unip\AgroApp_Desktop\AgroApp_Desktop\bin\Debug\net8.0-windows\WinForms.DataVisualization.Utilities.dll
+C:\Users\nikol\OneDrive\Documentos\projetos\unip\AgroApp_Desktop\AgroApp_Desktop\bin\Debug\net8.0-windows\WinForms.DataVisualization.dll
+C:\Users\nikol\OneDrive\Documentos\projetos\unip\AgroApp_Desktop\AgroApp_Desktop\obj\Debug\net8.0-windows\AgroApp_Desktop.csproj.AssemblyReference.cache
+C:\Users\nikol\OneDrive\Documentos\projetos\unip\AgroApp_Desktop\AgroApp_Desktop\obj\Debug\net8.0-windows\AgroApp_Desktop.AgroApp.resources
+C:\Users\nikol\OneDrive\Documentos\projetos\unip\AgroApp_Desktop\AgroApp_Desktop\obj\Debug\net8.0-windows\AgroApp_Desktop.LoginForm.resources
+C:\Users\nikol\OneDrive\Documentos\projetos\unip\AgroApp_Desktop\AgroApp_Desktop\obj\Debug\net8.0-windows\AgroApp_Desktop.Properties.Resources.resources
+C:\Users\nikol\OneDrive\Documentos\projetos\unip\AgroApp_Desktop\AgroApp_Desktop\obj\Debug\net8.0-windows\AgroApp_Desktop.csproj.GenerateResource.cache
+C:\Users\nikol\OneDrive\Documentos\projetos\unip\AgroApp_Desktop\AgroApp_Desktop\obj\Debug\net8.0-windows\AgroApp_Desktop.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nikol\OneDrive\Documentos\projetos\unip\AgroApp_Desktop\AgroApp_Desktop\obj\Debug\net8.0-windows\AgroApp_Desktop.AssemblyInfoInputs.cache
+C:\Users\nikol\OneDrive\Documentos\projetos\unip\AgroApp_Desktop\AgroApp_Desktop\obj\Debug\net8.0-windows\AgroApp_Desktop.AssemblyInfo.cs
+C:\Users\nikol\OneDrive\Documentos\projetos\unip\AgroApp_Desktop\AgroApp_Desktop\obj\Debug\net8.0-windows\AgroApp_Desktop.csproj.CoreCompileInputs.cache
+C:\Users\nikol\OneDrive\Documentos\projetos\unip\AgroApp_Desktop\AgroApp_Desktop\obj\Debug\net8.0-windows\AgroApp_Desktop.sourcelink.json
+C:\Users\nikol\OneDrive\Documentos\projetos\unip\AgroApp_Desktop\AgroApp_Desktop\obj\Debug\net8.0-windows\AgroApp_.FE63337E.Up2Date
+C:\Users\nikol\OneDrive\Documentos\projetos\unip\AgroApp_Desktop\AgroApp_Desktop\obj\Debug\net8.0-windows\AgroApp_Desktop.dll
+C:\Users\nikol\OneDrive\Documentos\projetos\unip\AgroApp_Desktop\AgroApp_Desktop\obj\Debug\net8.0-windows\refint\AgroApp_Desktop.dll
+C:\Users\nikol\OneDrive\Documentos\projetos\unip\AgroApp_Desktop\AgroApp_Desktop\obj\Debug\net8.0-windows\AgroApp_Desktop.pdb
+C:\Users\nikol\OneDrive\Documentos\projetos\unip\AgroApp_Desktop\AgroApp_Desktop\obj\Debug\net8.0-windows\AgroApp_Desktop.genruntimeconfig.cache
+C:\Users\nikol\OneDrive\Documentos\projetos\unip\AgroApp_Desktop\AgroApp_Desktop\obj\Debug\net8.0-windows\ref\AgroApp_Desktop.dll
+C:\Users\nikol\OneDrive\Documentos\projetos\unip\AgroApp_Desktop\AgroApp_Desktop\bin\Debug\net8.0-windows\Newtonsoft.Json.dll

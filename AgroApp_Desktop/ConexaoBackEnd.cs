@@ -43,7 +43,7 @@ namespace AgroApp_Desktop
                 using (HttpClient client = new HttpClient())
                 {
                     HttpResponseMessage response = await client.GetAsync(url);
-                    if (response.IsSuccessStatusCode) 
+                    if (response.IsSuccessStatusCode)
                     {
                         // Lê a resposta do servidor
                         string responseBody = await response.Content.ReadAsStringAsync();
@@ -59,7 +59,7 @@ namespace AgroApp_Desktop
                         return [];
                     }
                 }
-             }
+            }
             catch (Exception ex)
             {
                 // Trata exceções, como problemas de conexão
@@ -94,7 +94,7 @@ namespace AgroApp_Desktop
                     }
                 }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 //Trata exceções como problemas de conexão
                 Console.WriteLine($"Erro ao conectar ao servidor: {ex.Message}");
@@ -103,5 +103,109 @@ namespace AgroApp_Desktop
 
         }
 
+        public async Task<List<PlantacoesCadastradas>> deveRetornarPlantacoesCadastradas()
+        {
+            string url = $"{conexaoBackEnd}/plantacoes/fornecimentos-cadastrados";
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    HttpResponseMessage response = await client.GetAsync(url);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        //Lê a resposta do servidor
+                        string responseBody = await response.Content.ReadAsStringAsync();
+
+                        //Deserializa o JSON para a classe 
+                        var plantacoes = JsonConvert.DeserializeObject<List<PlantacoesCadastradas>>(responseBody);
+
+                        return plantacoes;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Erro na requisição: {response.StatusCode}");
+                        return [];
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //Trata exceções como problema de conexão
+                Console.WriteLine($"Erro ao conectar ao servidor: {ex.Message}");
+                return [];
+            }
+
+        }
+
+        public async Task<bool> deveDefinirAlimentoComoPronto(long id, double valorFinal)
+        {
+            string url = $"{conexaoBackEnd}/plantacoes/definir-pronto";
+
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    // Criar um array JSON com os dados necessários
+                    var dados = new[]
+                    {
+                new
+                {
+                    id_plantacao = id,
+                    valor_final = valorFinal
+                }
+            };
+
+                    var content = new StringContent(JsonConvert.SerializeObject(dados), Encoding.UTF8, "application/json");
+
+                    HttpResponseMessage response = await client.PatchAsync(url, content);
+
+                    return response.IsSuccessStatusCode;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao conectar ao servidor: {ex.Message}");
+                return false;
+            }
+        }
+
+
+        public async Task<Relatorio> deveRetornarRelatorio()
+        {
+            string url = $"{conexaoBackEnd}/vendas/relatorios";
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    HttpResponseMessage response = await client.GetAsync(url);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        //Lê a resposta do servidor
+                        string responseBody = await response.Content.ReadAsStringAsync();
+
+                        //Deserializa o JSON para a classe 
+                        var relatorio = JsonConvert.DeserializeObject<Relatorio>(responseBody);
+
+                        return relatorio;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Erro na requisição: {response.StatusCode}");
+                        return null;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //Trata exceções como problema de conexão
+                Console.WriteLine($"Erro ao conectar ao servidor: {ex.Message}");
+                return null;
+            }
+
+        }
+
+
     }
+
+
 }

@@ -74,7 +74,7 @@ namespace AgroApp_Desktop
             pictureBox1.Anchor = AnchorStyles.None;
         }
 
-        private void buttonEntrar_Click(object sender, EventArgs e)
+        private async void buttonEntrar_Click(object sender, EventArgs e)
         {
             // Verifica se os campos de texto estão preenchidos
             if (string.IsNullOrWhiteSpace(textBox1.Text) || string.IsNullOrWhiteSpace(textBox2.Text))
@@ -82,16 +82,30 @@ namespace AgroApp_Desktop
                 // Mostra uma mensagem de erro se algum campo estiver vazio
                 MessageBox.Show("Por favor, preencha todos os campos.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            else if (!textBox1.Text.Contains("Admin"))
+            {
+                MessageBox.Show("Usuário ou senha inválidos.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             else
             {
-                // Cria uma nova instância do próximo formulário (por exemplo, Form2)
-                AgroApp Form1 = new AgroApp();
+                ConexaoBackEnd conexaoBack = new ConexaoBackEnd();
+                bool loginBemSucedido = await conexaoBack.deveFazerLogin(textBox1.Text, textBox2.Text);
 
-                // Mostra o próximo formulário
-                Form1.Show();
+                if (loginBemSucedido)
+                {
+                    // Cria uma nova instância do próximo formulário (por exemplo, Form2)
+                    AgroApp Form1 = new AgroApp();
 
-                // Fecha o formulário de login
-                this.Hide();
+                    // Mostra o próximo formulário
+                    Form1.Show();
+
+                    // Fecha o formulário de login
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Usuário ou senha inválidos.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 

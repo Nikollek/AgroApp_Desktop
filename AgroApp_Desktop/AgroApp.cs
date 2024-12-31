@@ -1,3 +1,4 @@
+using System.Reflection.Emit;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -37,7 +38,7 @@ namespace AgroApp_Desktop
         }
 
 
-        private void Form1_Load(object sender, EventArgs e)
+        private async void Form1_Load(object sender, EventArgs e)
         {
             //Paleta de cores dos elementos no menu
             panelMenu.BackColor = ColorPalette.VerdeClaro; 
@@ -65,51 +66,83 @@ namespace AgroApp_Desktop
             labelRelatórios.ForeColor = ColorPalette.VerdeEscuro;
             pictureAgroApp.BackColor = ColorPalette.VerdeClaro;
 
+
+            Relatorio relatorio = null;
+
+            try
+            {
+                // Chama o método para obter os dados da API
+                ConexaoBackEnd conexao = new ConexaoBackEnd();
+                relatorio = await conexao.deveRetornarRelatorio();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar dados: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            label2.Text = relatorio.total_ingressos;
+            label4.Text = relatorio.total_venda_alimentos;
+            label5.Text = $"R$ {relatorio.ganho_total}";
+
             // Configurando o primeiro gráfico
             chartAlimentosFornecidos.Series.Clear(); // Limpa as séries existentes
             var series1 = chartAlimentosFornecidos.Series.Add("Série 1");
             series1.ChartType = SeriesChartType.Doughnut; // Tipo de gráfico
 
-            // Adicionando os dados
-            series1.Points.AddXY(1, 10);
-            series1.Points[0].Label = "Batata"; 
-            series1.Points[0].LabelForeColor = System.Drawing.Color.White;
-            series1.Points.AddXY(2, 20);
-            series1.Points[1].Label = "Alface";         
-            series1.Points[1].LabelForeColor = System.Drawing.Color.White;
-            series1.Points.AddXY(3, 30);
-            series1.Points[2].Label = "Cenoura"; 
-            series1.Points[2].LabelForeColor = System.Drawing.Color.White;
-            series1.Points.AddXY(4, 40);
-            series1.Points[3].Label = "Cebola"; 
-            series1.Points[3].LabelForeColor = System.Drawing.Color.White;
+            // Itera sobre os dados do dicionário e adiciona ao gráfico
+            int index = 0;
+            foreach (var alimento in relatorio.map_top_cinco_alimentos_fornecidos)
+            {
+                var point = series1.Points.AddXY(alimento.Key, alimento.Value); // Adiciona o ponto no gráfico
+                series1.Points[index].Label = $"{alimento.Key}: {alimento.Value:F1}%"; // Define o rótulo
+                series1.Points[index].LabelForeColor = System.Drawing.Color.Black; // Define a cor do rótulo
 
-            // Adicionando a paleta de cores
-            series1.Points[0].Color = ColorPalette.Verde;        
-            series1.Points[1].Color = ColorPalette.VerdeClaro;   
-            series1.Points[2].Color = ColorPalette.VerdeMedio;   
-            series1.Points[3].Color = ColorPalette.VerdeEscuro;  
+                // Opcional: Ajustar cores manualmente com base no índice (exemplo de tons de verde)
+                switch (index)
+                {
+                    case 0: series1.Points[index].Color = ColorPalette.Verde; break;
+                    case 1: series1.Points[index].Color = ColorPalette.VerdeClaro; break;
+                    case 2: series1.Points[index].Color = ColorPalette.VerdeMedio; break;
+                    case 3: series1.Points[index].Color = ColorPalette.VerdeEscuro; break;
+                    default: series1.Points[index].Color = System.Drawing.Color.Gray; break; // Cor padrão para extras
+                }
 
-
-
+                index++;
+            }
 
             // Configurando o segundo gráfico
             chartAlimentosIngresso.Series.Clear(); // Limpa as séries existentes
             var series2 = chartAlimentosIngresso.Series.Add("Série 2");
-            series2.ChartType = SeriesChartType.Column; // Tipo de gráfico
+            series2.ChartType = SeriesChartType.Column; // Tipo de gráfico (Coluna)
 
-            // Adicionando os dados
-            series2.Points.AddXY(1, 10);
-            series2.Points[0].Label = "Cebola";
-            series2.Points.AddXY(2, 30);
-            series2.Points[1].Label = "tomate"; 
-            series2.Points.AddXY(3, 50);
-            series2.Points[2].Label = "Batata";
+            // Define as propriedades do gráfico para espaçamento correto entre as colunas
+            series2["PointWidth"] = "0.8"; // Ajusta a largura das colunas
+            series2["BarWidth"] = "0.8";   // Ajuste adicional de largura se necessário
 
-            // Adicionando a paleta de cores
-            series2.Points[0].Color = ColorPalette.VerdeMedio;      
-            series2.Points[1].Color = ColorPalette.VerdeMedio;   
-            series2.Points[2].Color = ColorPalette.VerdeMedio;   
+            // Itera sobre os dados do dicionário e adiciona ao gráfico
+            int index2 = 0;
+            foreach (var alimento in relatorio.map_top_cinco_alimentos_ingresso)
+            {
+                // Adiciona o ponto no gráfico com valor único de X (index2) e o valor Y (alimento.Value)
+                var point = series2.Points.AddXY(index2, alimento.Value); // X é o índice, Y é o valor
+
+                // Define o rótulo com o valor e a porcentagem
+                series2.Points[index2].Label = $"{alimento.Key}: {alimento.Value:F1}%"; // Exibe o valor com 1 casa decimal
+                series2.Points[index2].LabelForeColor = System.Drawing.Color.Black; // Define a cor do rótulo
+
+                // Ajusta a cor das barras manualmente com base no índice
+                switch (index2)
+                {
+                    case 0: series2.Points[index2].Color = ColorPalette.VerdeMedio; break;
+                    case 1: series2.Points[index2].Color = ColorPalette.VerdeMedio; break;
+                    case 2: series2.Points[index2].Color = ColorPalette.VerdeMedio; break;
+                    case 3: series2.Points[index2].Color = ColorPalette.VerdeMedio; break;
+                    default: series2.Points[index2].Color = ColorPalette.VerdeMedio; break; // Cor padrão 
+                }
+
+                index2++;
+            }
+
 
             series1.IsValueShownAsLabel = true; // Exibir os dados
             series1.Font = new Font("Linik Sans", 10, FontStyle.Bold); // Para alterar a fonte dos dados
@@ -118,7 +151,7 @@ namespace AgroApp_Desktop
             series2.Font = new Font("Linik Sans", 10, FontStyle.Bold); // Para alterar a fonte dos dados
 
             ConfigurarDataGridVendasAsync();
-            ConfigurarDataGridProdução();
+            ConfigurarDataGridProduçãoAsync();
             ConfigurarDataGridFornecedores();
         }
 
@@ -172,16 +205,20 @@ namespace AgroApp_Desktop
 
         }
 
-        private void ConfigurarDataGridProdução()
+        private async Task ConfigurarDataGridProduçãoAsync()
         {
-
             dataGridProdução.AllowUserToAddRows = false;
 
-            // Adicionando as colunas 
-            dataGridProdução.Columns.Add("Coluna1", "Alimentos Cadastrados");
-            dataGridProdução.Columns.Add("Coluna2", "Data do cadastro");
-            dataGridProdução.Columns.Add("Coluna3", "Clima e região");
-            dataGridProdução.Columns.Add("Coluna4", "Tempo para ser feito");
+            // Limpa as colunas antes de adicionar novas
+            dataGridProdução.Columns.Clear();
+
+            // Adicionando as colunas
+            dataGridProdução.Columns.Add("Coluna1", "Quantidade");
+            dataGridProdução.Columns.Add("Coluna2", "Nome");
+            dataGridProdução.Columns.Add("Coluna3", "Data do cadastro");
+            dataGridProdução.Columns.Add("Coluna4", "Clima e região");
+            dataGridProdução.Columns.Add("Coluna5", "Tempo para ser feito");
+            dataGridProdução.Columns.Add("Coluna6", "Valor final");
 
             DataGridViewCheckBoxColumn checkBoxColumn = new DataGridViewCheckBoxColumn();
             checkBoxColumn.HeaderText = "PRONTO";  // Cabeçalho da coluna
@@ -192,6 +229,7 @@ namespace AgroApp_Desktop
 
             dataGridProdução.DefaultCellStyle.ForeColor = ColorPalette.VerdeEscuro; // Cor do texto
             dataGridProdução.ColumnHeadersDefaultCellStyle.ForeColor = ColorPalette.VerdeEscuro; // Cor do texto do cabeçalho
+            dataGridProdução.Columns["Coluna6"].ReadOnly = false; // Permitir edição pelo usuário
 
             // Centraliza o texto dos cabeçalhos
             foreach (DataGridViewColumn column in dataGridProdução.Columns)
@@ -199,28 +237,128 @@ namespace AgroApp_Desktop
                 column.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             }
 
-            dataGridProdução.Columns[0].HeaderCell.Style.BackColor = ColorPalette.VerdeClaro;// Cor para a primeira coluna
-            dataGridProdução.Columns[1].HeaderCell.Style.BackColor = ColorPalette.VerdeClaro;// Cor para a segunda coluna
-            dataGridProdução.Columns[2].HeaderCell.Style.BackColor = ColorPalette.VerdeClaro;// Cor para a terceira coluna
-            dataGridProdução.Columns[3].HeaderCell.Style.BackColor = ColorPalette.VerdeClaro;// Cor para a quarta coluna
-            dataGridProdução.Columns[4].HeaderCell.Style.BackColor = ColorPalette.VerdeClaro;// Cor para a quinta coluna
+            dataGridProdução.Columns[0].HeaderCell.Style.BackColor = ColorPalette.VerdeClaro; // Cor para a primeira coluna
+            dataGridProdução.Columns[1].HeaderCell.Style.BackColor = ColorPalette.VerdeClaro; // Cor para a segunda coluna
+            dataGridProdução.Columns[2].HeaderCell.Style.BackColor = ColorPalette.VerdeClaro; // Cor para a terceira coluna
+            dataGridProdução.Columns[3].HeaderCell.Style.BackColor = ColorPalette.VerdeClaro; // Cor para a quarta coluna
+            dataGridProdução.Columns[4].HeaderCell.Style.BackColor = ColorPalette.VerdeClaro; // Cor para a quinta coluna
+            dataGridProdução.Columns[5].HeaderCell.Style.BackColor = ColorPalette.VerdeClaro; // Cor para a sexta coluna
 
-            // Adicionando os dados
-            dataGridProdução.Rows.Add("Tomate");
-            dataGridProdução.Rows.Add("Batata");
-            dataGridProdução.Rows.Add("Cenoura");
-            dataGridProdução.Rows.Add("Alface");
-            dataGridProdução.Rows.Add("Tomate");
-            dataGridProdução.Rows.Add("Batata");
-            dataGridProdução.Rows.Add("Cenoura");
-            dataGridProdução.Rows.Add("Alface");
+            // Limpa as linhas existentes no DataGridView antes de carregar os novos dados
+            dataGridProdução.Rows.Clear();
 
-            dataGridProdução.Height = 243; // Altura do datagrid
+            List<PlantacoesCadastradas> plantacoes = null;
+            try
+            {
+                // Chama o método para obter os dados da API
+                ConexaoBackEnd conexao = new ConexaoBackEnd();
+                plantacoes = await conexao.deveRetornarPlantacoesCadastradas();
+
+                // Adiciona os dados ao DataGridView
+                foreach (var plantacao in plantacoes)
+                {
+                    string dataFormatada = DateTime.Parse(plantacao.data_cadastro).ToString("dd/MM/yyyy HH:mm:ss");
+                    dataGridProdução.Rows.Add(
+                        $"{plantacao.quantidade}X",  // Coluna 1
+                        plantacao.alimento_cadastrado, // Coluna 2
+                        dataFormatada,  // Coluna 3
+                        $"{plantacao.clima}/{plantacao.regiao}",  // Coluna 4
+                        plantacao.tempo_finalizacao // Coluna 5
+                    );
+                }
+                dataGridProdução.Height = 243; // Altura do DataGridView
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar dados: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
             dataGridProdução.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-
+            buttonAdicionarProdução.Click += async (sender, e) => await DefinirAlimentoComoPronto(plantacoes);
         }
+
+        private async Task DefinirAlimentoComoPronto(List<PlantacoesCadastradas> plantacoesCadastradas)
+        {
+            try
+            {
+                // Verifica se existem alimentos no DataGridView
+                if (dataGridProdução.Rows.Count == 0)
+                {
+                    MessageBox.Show("Não há alimentos para processar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Iterar pelas linhas do DataGridView para identificar os alimentos selecionados
+                foreach (DataGridViewRow row in dataGridProdução.Rows)
+                {
+                    // Verificar se a célula da coluna de checkbox está marcada
+                    var cellValue = row.Cells["ColunaCheckBox"].Value;
+                    if (cellValue != null && (bool)cellValue)
+                    {
+                        // Obter o nome do alimento selecionado
+                        string nomeAlimento = row.Cells["Coluna2"].Value?.ToString();
+                        string valorFinalString = row.Cells["Coluna6"].Value?.ToString();
+
+                        // Validar os dados necessários
+                        if (string.IsNullOrWhiteSpace(nomeAlimento) || string.IsNullOrWhiteSpace(valorFinalString))
+                        {
+                            MessageBox.Show("Dados inválidos para um ou mais alimentos selecionados.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            continue;
+                        }
+
+                        // Converter o valor final para número
+                        if (!double.TryParse(valorFinalString, out double valorFinal))
+                        {
+                            MessageBox.Show($"Valor inválido para o alimento {nomeAlimento}.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            continue;
+                        }
+
+                        // Localizar o alimento correspondente na lista de plantações cadastradas
+                        var plantacaoSelecionada = plantacoesCadastradas.FirstOrDefault(p => p.alimento_cadastrado == nomeAlimento);
+
+                        if (plantacaoSelecionada == null)
+                        {
+                            MessageBox.Show($"O alimento {nomeAlimento} não foi encontrado na lista de plantações cadastradas.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            continue;
+                        }
+
+                        // Pegar apenas o primeiro ID da lista `ids`
+                        string idSelecionado = plantacaoSelecionada.ids.FirstOrDefault();
+
+                        if (string.IsNullOrEmpty(idSelecionado))
+                        {
+                            MessageBox.Show($"O alimento {nomeAlimento} não possui um ID válido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            continue;
+                        }
+
+                        // Enviar para o backend utilizando o ID e valor final
+                        ConexaoBackEnd conexao = new ConexaoBackEnd();
+                        bool sucesso = await conexao.deveDefinirAlimentoComoPronto(long.Parse(idSelecionado), valorFinal);
+
+                        // Notificar o usuário do sucesso ou falha
+                        if (sucesso)
+                        {
+                            MessageBox.Show($"Alimento {nomeAlimento} marcado como 'PRONTO' com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show($"Falha ao marcar o alimento {nomeAlimento} (ID: {idSelecionado}) como 'PRONTO'.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+
+                // Recarregar os dados do DataGridView
+                await ConfigurarDataGridProduçãoAsync(); // Atualiza os dados da tabela
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao processar os alimentos: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
 
 
         private async void ConfigurarDataGridFornecedores()
